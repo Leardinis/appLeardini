@@ -1,5 +1,6 @@
-// ATENÇÃO: Esta é a URL do seu Web App do GAS. Ela é a ponte para o seu backend.
-const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxcsFLZEQdaQimZ4mYNl10-3X-dexxxecGYmgOn8x8wVxGkI_jCdY3KrqZVlk6XBb8Q/exec'; 
+// ATENÇÃO: SUBSTITUA ESTA URL PELA SUA NOVA URL DO WEB APP DO GAS.
+// (O formato deve ser parecido com o da URL anterior, mas o ID do script será novo)
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyVap2nJQWYvTY6lQ9jOIRF4Urfmg7Rgt7kNy3WHCPF44S6g90ooKgfOl0L0E8cf6_H/exec'; 
 
 /**
  * Envia uma requisição POST ao Google Apps Script.
