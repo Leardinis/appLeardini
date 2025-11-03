@@ -1,6 +1,6 @@
 // script.js (Código que o cliente VAI ver, por isso NÃO pode ter suas chaves)
 
-const GAS_WEB_APP_URL = 'SUA_URL_DO_WEB_APP_AQUI'; // Cole a URL do Passo 1.2
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxcsFLZEQdaQimZ4mYNl10-3X-dexxxecGYmgOn8x8wVxGkI_jCdY3KrqZVlk6XBb8Q/exec'; // Cole a URL do Passo 1.2
 
 async function venderSistema(dadosCliente) {
     try {
