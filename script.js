@@ -1,43 +1,57 @@
-// script.js (Código que o cliente VAI ver, por isso NÃO pode ter suas chaves)
+// ATENÇÃO: Substitua esta URL pela URL do seu Web App do GAS!
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxcsFLZEQdaQimZ4mYNl10-3X-dexxxecGYmgOn8x8wVxGkI_jCdY3KrqZVlk6XBb8Q/exec'; 
 
-const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxcsFLZEQdaQimZ4mYNl10-3X-dexxxecGYmgOn8x8wVxGkI_jCdY3KrqZVlk6XBb8Q/exec'; // Cole a URL do Passo 1.2
+function acionarVenda() {
+    const statusDiv = document.getElementById('status-mensagem');
+    statusDiv.textContent = 'Enviando dados para o servidor seguro...';
 
-async function venderSistema(dadosCliente) {
-    try {
-        const response = await fetch(GAS_WEB_APP_URL, {
-            method: 'POST',
-            mode: 'cors', // Crucial para comunicação entre domínios
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                acao: 'processarVenda',
-                dados: dadosCliente // Dados do formulário, carrinho, etc.
-            })
-        });
-
-        const resultado = await response.json();
-        
-        if (resultado.status === 'Sucesso') {
-            alert('Venda processada com sucesso! ID: ' + resultado.idVenda);
-        } else {
-            alert('Erro ao processar a venda.');
+    const dadosParaGAS = {
+        acao: 'processarVenda',
+        // Dados fictícios que você enviaria de um formulário real
+        dados: { 
+            nome: 'Teste Cliente', 
+            valor: 100.00 
         }
+    };
 
-    } catch (error) {
-        console.error('Falha na comunicação com o backend:', error);
-        alert('Ocorreu um erro de rede. Tente novamente.');
-    }
+    fetch(GAS_WEB_APP_URL, {
+        method: 'POST',
+        mode: 'cors', // Necessário para comunicação entre domínios
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dadosParaGAS)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Erro HTTP! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(resultado => {
+        // O que o GAS retornar
+        if (resultado.status === 'Sucesso') {
+            statusDiv.style.color = 'green';
+            statusDiv.textContent = `SUCESSO! Venda ID: ${resultado.idVenda}. O backend funcionou!`;
+        } else {
+            statusDiv.style.color = 'red';
+            statusDiv.textContent = `FALHA no processamento: ${resultado.mensagem || 'Erro desconhecido.'}`;
+        }
+    })
+    .catch(error => {
+        statusDiv.style.color = 'red';
+        console.error('Erro na comunicação com o GAS:', error);
+        statusDiv.textContent = 'ERRO DE CONEXÃO: Verifique o console ou a URL do GAS.';
+    });
 }
 
-// Exemplo de uso:
+// Garante que o script só roda após o HTML estar carregado
 document.addEventListener('DOMContentLoaded', () => {
     const btnVender = document.getElementById('vender');
     if (btnVender) {
-        btnVender.addEventListener('click', () => {
-            // Supondo que você pegou dados de um formulário
-            const dados = { nome: 'João', valor: 99.90 }; 
-            venderSistema(dados);
-        });
+        // Adiciona o evento ao botão
+        btnVender.addEventListener('click', acionarVenda);
+    } else {
+        console.error("Botão com ID 'vender' não encontrado no HTML.");
     }
 });
