@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Vendas Seguro</title>
+    <title>Sistema de Vendas Seguro com GAS</title>
+    <!-- Link para o seu arquivo de estilos -->
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
     <header>
-        <h1>Bem-vindo ao Nosso Sistema</h1>
+        <h1>Sistema de Vendas com Backend Protegido</h1>
     </header>
 
     <main>
         <section id="interface-venda">
-            <h2>Teste de Conexão com o Backend</h2>
-            <p>Clique no botão abaixo para simular um processamento de venda que será enviado ao Google Apps Script.</p>
+            <h2>Simular Processamento</h2>
+            <p>Este botão irá enviar um POST para o Google Apps Script (Backend) para testar a comunicação segura e o CORS.</p>
             
             <button id="vender">Processar Venda de Teste</button>
             
-            <div id="status-mensagem" style="margin-top: 20px; font-weight: bold;"></div>
+            <!-- Área para exibir mensagens de status e sucesso -->
+            <div id="status-mensagem">Aguardando ação...</div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Seu Sistema</p>
+        <p>Arquitetura: GitHub Pages (Frontend) & Google Apps Script (Backend Seguro).</p>
+        <p>Desenvolvido por Leardinis.</p>
     </footer>
 
+    <!-- Carrega o script de interação -->
     <script src="script.js"></script>
 </body>
 </html>
